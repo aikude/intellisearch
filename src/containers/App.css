@@ -1,0 +1,19 @@
+font-face  {
+    font-family: 'Bangers';
+    font-style: 'normal';
+    font-weight: 'normal';
+    src:    local('Bangers'), url('Bangers-Regular.ttf') format('ttf');
+}
+
+h1 {
+    font-family: 'Bangers';
+    font-weight: 200;
+    color:  #ccffcc;
+}
+
+header  {
+    position: fixed;
+    top: 30px;
+    width: 100%;
+    height: 170px;
+}
