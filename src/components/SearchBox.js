@@ -1,5 +1,4 @@
 import React from 'react';
-import 'tachyons';
 
 const SearchBox = ({searchField, searchChange}) => {
     return (
