@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './Card';
 //import Scroll from './Scroll';
 
+// Display list of fetched items as cards
 const CardList = ({items}) => {
    return (
     <div>
