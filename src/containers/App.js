@@ -14,7 +14,7 @@ class App extends React.Component {
 
   render(){
     const { searchValue, setSearchValue, items, isPending } = this.props;
-    const searchResults = items.filter(item => { return item.name.toLowerCase().includes(searchValue.toLowerCase()); });
+    const searchResults = items.filter( item => item.name.toLowerCase().includes(searchValue.toLowerCase()) );
     //console.log(searchResults);
 
     if (isPending){ return <h1 className="tc">Loading...</h1>}
