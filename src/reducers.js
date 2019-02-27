@@ -1,4 +1,5 @@
-import { CHANGE_SEARCH_VALUE, REQUEST_ITEMS_PENDING, REQUEST_ITEMS_SUCCESS, REQUEST_ITEMS_FAILED } from './constants';
+import { CHANGE_SEARCH_VALUE, REQUEST_ITEMS_PENDING, REQUEST_ITEMS_SUCCESS, REQUEST_ITEMS_FAILED, 
+    CREATE_ALERTS, CLEAR_ALERTS } from './constants';
 
 const initialStateSearch = {
     searchValue: ''
@@ -27,6 +28,22 @@ export const requestItems = (state=initialStateItems, action={}) => {
             return {...state, items: action.payload, isPending: false};
         case REQUEST_ITEMS_FAILED:
             return {...state, error: action.payload, isPending: false};
+        default:
+            return state;
+    }
+}
+
+const initialStateAlerts = {
+    alerts: []
+}
+
+export const alerts = (state = initialStateAlerts, action) => {
+    switch(action.type) {
+        case CREATE_ALERTS:
+            //return { ...state, alerts: [...state.alerts, ...action.payload] }
+            return { ...state, alerts: action.payload }
+        case CLEAR_ALERTS:
+            return { ...state, alerts: [] }
         default:
             return state;
     }

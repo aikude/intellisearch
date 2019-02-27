@@ -1,7 +1,8 @@
 import React from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
-import { setSearchValue, requestItems } from '../actions';
+import Alerts from '../components/Alerts';
+import { setSearchValue, requestItems, createAlert, clearAlerts } from '../actions';
 import { connect } from 'react-redux';
 //import { users } from './users';
 import './App.css';
@@ -9,11 +10,12 @@ import './App.css';
 class App extends React.Component {
   // Load default list on App load
   componentDidMount(){
+    this.props.clearAlerts();
     this.props.requestItems();
   }
 
   render(){
-    const { searchValue, setSearchValue, items, isPending } = this.props;
+    const { searchValue, setSearchValue, items, isPending, alerts } = this.props;
     const searchResults = items.filter( item => item.name.toLowerCase().includes(searchValue.toLowerCase()) );
     //console.log(searchResults);
 
@@ -22,21 +24,23 @@ class App extends React.Component {
       return (
         <div className="tc">
           <h1 className="f1">Smart Cats</h1>
+          <Alerts alerts={alerts} />
           <SearchBox setSearchValue={setSearchValue} />
           <CardList items={searchResults} />
         </div>
       );
     }
   }
- }
+}
 
- const mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     searchValue: state.searchItems.searchValue,
     items: state.requestItems.items,
     isPending: state.requestItems.isPending,
-    error: state.requestItems.error
+    error: state.requestItems.error,
+    alerts: state.alerts.alerts
   }
 }
 
-export default connect(mapStateToProps, { setSearchValue, requestItems })(App);
+export default connect(mapStateToProps, { setSearchValue, requestItems, createAlert, clearAlerts })(App);
